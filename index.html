@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutería Moderna | Frescura y Salud</title>
+    <!-- Tailwind CSS para diseño rápido y responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS para animaciones al hacer scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+        }
+
+        .secondary-color {
+            color: #FF9800;
+        }
+
+        .bg-orange-fresh {
+            background-color: #FF9800;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #FF9800;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-tab.active {
+            background-color: #FF9800;
+            color: white;
+        }
+
+        /* Estilos para el botón de WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Ocultar scrollbar en el contenedor de categorías si es necesario */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/573214576664" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header / Navegación -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white text-xl">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <span class="text-2xl font-bold text-green-700">Fruti<span class="text-orange-500">Fresh</span></span>
+            </div>
+
+            <!-- Menú Escritorio -->
+            <ul class="hidden md:flex space-x-8 font-medium">
+                <li><a href="#inicio" class="nav-link hover:text-orange-500">Inicio</a></li>
+                <li><a href="#productos" class="nav-link hover:text-orange-500">Productos</a></li>
+                <li><a href="#menu" class="nav-link hover:text-orange-500">Menú</a></li>
+                <li><a href="#nosotros" class="nav-link hover:text-orange-500">Nosotros</a></li>
+                <li><a href="#contacto" class="nav-link hover:text-orange-500">Contacto</a></li>
+            </ul>
+
+            <!-- Botón Menú Móvil -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-green-700 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 flex flex-col p-4 space-y-4 shadow-lg">
+            <a href="#inicio" class="text-lg font-medium text-gray-700">Inicio</a>
+            <a href="#productos" class="text-lg font-medium text-gray-700">Productos</a>
+            <a href="#menu" class="text-lg font-medium text-gray-700">Menú</a>
+            <a href="#nosotros" class="text-lg font-medium text-gray-700">Nosotros</a>
+            <a href="#contacto" class="text-lg font-medium text-gray-700">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&q=80&w=2000" alt="Frutas Frescas" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-6 z-10 grid md:grid-cols-2 gap-8 items-center">
+            <div data-aos="fade-right">
+                <span class="inline-block px-4 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-4">100% Natural & Fresco</span>
+                <h1 class="text-5xl md:text-7xl font-bold text-green-800 leading-tight mb-6">
+                    Frescura y salud en <span class="text-orange-500">cada bocado.</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                    Disfruta de la mejor selección de frutas, jugos naturales y opciones saludables preparadas con amor para tu bienestar.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#menu" class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold transition-all transform hover:scale-105 shadow-lg">
+                        Ver Menú Completo
+                    </a>
+                    <a href="#contacto" class="px-8 py-4 border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-full font-bold transition-all transform hover:scale-105">
+                        Ubícanos
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&q=80&w=800" alt="Canasta de frutas" class="rounded-3xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section id="productos" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-green-800 mb-4">Favoritos de la Casa</h2>
+                <div class="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Ensaladas -->
+                <div class="product-card group bg-gray-50 rounded-2xl overflow-hidden shadow-md transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600" alt="Ensaladas saludables" class="w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-700 mb-2">Ensaladas</h3>
+                        <p class="text-gray-600 text-sm mb-4">Mezclas frescas con ingredientes de temporada y aderezos naturales.</p>
+                        <span class="text-orange-500 font-bold italic">Desde $12.000</span>
+                    </div>
+                </div>
+
+                <!-- Jugos -->
+                <div class="product-card group bg-gray-50 rounded-2xl overflow-hidden shadow-md transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&q=80&w=600" alt="Jugos naturales" class="w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-700 mb-2">Jugos Naturales</h3>
+                        <p class="text-gray-600 text-sm mb-4">100% fruta pura, sin conservantes. Refrescancia garantizada.</p>
+                        <span class="text-orange-500 font-bold italic">Desde $5.000</span>
+                    </div>
+                </div>
+
+                <!-- Frappés -->
+                <div class="product-card group bg-gray-50 rounded-2xl overflow-hidden shadow-md transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600" alt="Frappés refrescantes" class="w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-700 mb-2">Frappés & Granizados</h3>
+                        <p class="text-gray-600 text-sm mb-4">La textura perfecta para los días de sol. Sabores frutales intensos.</p>
+                        <span class="text-orange-500 font-bold italic">Desde $8.000</span>
+                    </div>
+                </div>
+
+                <!-- Copas de fruta -->
+                <div class="product-card group bg-gray-50 rounded-2xl overflow-hidden shadow-md transition-all" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=600" alt="Copas de fruta" class="w-full h-full object-cover transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-700 mb-2">Copas de Fruta</h3>
+                        <p class="text-gray-600 text-sm mb-4">El postre perfecto: trozos de fruta con helado, crema y queso.</p>
+                        <span class="text-orange-500 font-bold italic">Desde $10.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Promociones -->
+    <section class="py-12 bg-orange-fresh text-white">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-6 md:mb-0" data-aos="fade-left">
+                <h3 class="text-3xl font-bold">¡Promo del Día!</h3>
+                <p class="text-xl">Ensalada de Frutas Familiar + 2 Jugos Naturales</p>
+            </div>
+            <div data-aos="zoom-in">
+                <span class="text-5xl font-black bg-white text-orange-500 px-6 py-2 rounded-lg shadow-xl">-25% OFF</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú Detallado -->
+    <section id="menu" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-green-800 mb-2">Nuestra Carta</h2>
+                <p class="text-gray-500 italic">Hecho al instante, siempre fresco</p>
+            </div>
+
+            <!-- Categorías -->
+            <div class="flex justify-center overflow-x-auto no-scrollbar space-x-4 mb-12 py-4">
+                <button onclick="filterMenu('saludable')" class="category-tab active whitespace-nowrap px-6 py-2 rounded-full border border-orange-500 text-orange-500 font-semibold transition-all">Saludables</button>
+                <button onclick="filterMenu('bebidas')" class="category-tab whitespace-nowrap px-6 py-2 rounded-full border border-orange-500 text-orange-500 font-semibold transition-all">Bebidas Frías</button>
+                <button onclick="filterMenu('calientes')" class="category-tab whitespace-nowrap px-6 py-2 rounded-full border border-orange-500 text-orange-500 font-semibold transition-all">Bebidas Calientes</button>
+                <button onclick="filterMenu('caldos')" class="category-tab whitespace-nowrap px-6 py-2 rounded-full border border-orange-500 text-orange-500 font-semibold transition-all">Caldos</button>
+                <button onclick="filterMenu('frescas')" class="category-tab whitespace-nowrap px-6 py-2 rounded-full border border-orange-500 text-orange-500 font-semibold transition-all">Frutas & Verduras</button>
+            </div>
+
+            <!-- Lista del Menú -->
+            <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+                <!-- Los items se cargan vía JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="nosotros" class="py-20 bg-white">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1488459711615-de64ef5993f7?auto=format&fit=crop&q=80&w=800" alt="Frutas en el mercado" class="rounded-3xl shadow-xl">
+            </div>
+            <div data-aos="fade-left">
+                <h2 class="text-4xl font-bold text-green-800 mb-6">Nuestra Historia</h2>
+                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                    Nacimos de la pasión por la naturaleza y la vida sana. Seleccionamos personalmente cada fruta y verdura directamente del campo para asegurar que llegue a tu mesa con el máximo sabor y valor nutricional.
+                </p>
+                <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                    Más que una frutería, somos un espacio para consentirte. Desde un energizante jugo verde hasta un reconfortante caldo de costilla en la mañana, estamos aquí para nutrir tu cuerpo y alma.
+                </p>
+                <div class="grid grid-cols-2 gap-6 text-center">
+                    <div class="p-4 bg-green-50 rounded-xl border-b-4 border-green-600">
+                        <h4 class="text-3xl font-bold text-green-700">10+</h4>
+                        <p class="text-sm text-gray-500 uppercase tracking-widest">Años de Calidad</p>
+                    </div>
+                    <div class="p-4 bg-orange-50 rounded-xl border-b-4 border-orange-500">
+                        <h4 class="text-3xl font-bold text-orange-600">100%</h4>
+                        <p class="text-sm text-gray-500 uppercase tracking-widest">Natural</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+                <!-- Info y Form -->
+                <div class="p-8 md:p-12 md:w-1/2">
+                    <h2 class="text-3xl font-bold text-green-800 mb-8">Contáctanos</h2>
+                    
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-orange-500 text-xl pt-1"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h4 class="font-bold">Dirección</h4>
+                                <p class="text-gray-600">Calle Principal #45-67, Ciudad Frescura</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-orange-500 text-xl pt-1"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <h4 class="font-bold">Teléfono / WhatsApp</h4>
+                                <p class="text-gray-600">+57 321 457 6664</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-orange-500 text-xl pt-1"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <h4 class="font-bold">Horario</h4>
+                                <p class="text-gray-600">Lunes a Domingo: 6:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Tu Nombre" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <input type="email" placeholder="Correo Electrónico" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <textarea placeholder="¿En qué podemos ayudarte?" rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                        <button type="submit" class="w-full py-4 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-colors">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+                <!-- Mapa Embebido -->
+                <div class="md:w-1/2 h-64 md:h-auto min-h-[400px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126438.28548135891!2d-72.5078!3d7.8939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6645084931925b%3A0x673961f7d5440c96!2zQ8O6Y3V0YSwgTm9ydGUgZGUgU2FudGFuZGVy!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 text-2xl font-bold">
+                        <i class="fas fa-leaf text-green-400"></i>
+                        <span>Fruti<span class="text-orange-400">Fresh</span></span>
+                    </div>
+                    <p class="text-green-300 mt-2 italic">Naturalmente deliciosa</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-2xl hover:text-orange-400 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-2xl hover:text-orange-400 transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-2xl hover:text-orange-400 transition-colors"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="border-t border-green-800 pt-8 text-center text-green-400 text-sm">
+                <p>&copy; 2024 FrutiFresh. Todos los derechos reservados. Diseñado con frescura.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Menú Móvil Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú al hacer click en un link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Data del Menú
+        const menuData = [
+            // Saludables
+            { name: "Ensalada de Frutas Especial", price: "$15.000", category: "saludable", desc: "Papaya, banano, fresa, manzana, crema de leche, queso y helado." },
+            { name: "Copa de Fruta Tradicional", price: "$10.000", category: "saludable", desc: "Variedad de frutas picadas con jarabe de la casa." },
+            { name: "Ensalada César Saludable", price: "$18.000", category: "saludable", desc: "Lechugas frescas, pollo a la plancha y crutones integrales." },
+            
+            // Bebidas Frías
+            { name: "Frappé de Mango Biche", price: "$9.000", category: "bebidas", desc: "Hielo frapeado con mango verde, limón y sal." },
+            { name: "Jugo en Leche (Fresa/Mora)", price: "$7.500", category: "bebidas", desc: "Preparado al instante con fruta natural." },
+            { name: "Granizado de Café", price: "$8.500", category: "bebidas", desc: "Refrescante sabor a café colombiano." },
+            { name: "Limonada de Coco", price: "$10.000", category: "bebidas", desc: "Cremosa y refrescante con coco natural." },
+
+            // Bebidas Calientes
+            { name: "Chocolate Caliente", price: "$6.000", category: "calientes", desc: "Chocolate artesanal acompañado de queso." },
+            { name: "Café Americano", price: "$4.000", category: "calientes", desc: "Grano seleccionado de alta montaña." },
+            { name: "Aromática de Frutos Rojos", price: "$4.500", category: "calientes", desc: "Infusión natural con trozos de fruta real." },
+
+            // Caldos
+            { name: "Caldo de Costilla", price: "$14.000", category: "caldos", desc: "Tradicional, con papa y cilantro. Acompañado de arepa." },
+            { name: "Caldo de Huevo", price: "$8.000", category: "caldos", desc: "El clásico de la mañana para empezar con energía." },
+
+            // Frutas & Verduras
+            { name: "Canasta Familiar Frutas", price: "$25.000", category: "frescas", desc: "Selección de 5 tipos de frutas de temporada (aprox 3kg)." },
+            { name: "Pack Verduras Frescas", price: "$20.000", category: "frescas", desc: "Tomate, cebolla, pimentón y verduras verdes del día." }
+        ];
+
+        function filterMenu(category) {
+            const container = document.getElementById('menu-items');
+            const buttons = document.querySelectorAll('.category-tab');
+            
+            // Update Active Tab
+            buttons.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(category)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Filter Items
+            const filtered = menuData.filter(item => item.category === category);
+            
+            container.innerHTML = filtered.map(item => `
+                <div class="flex justify-between items-center border-b border-gray-200 py-4 hover:bg-white px-2 transition-colors rounded-lg">
+                    <div class="pr-4">
+                        <h4 class="font-bold text-green-800">${item.name}</h4>
+                        <p class="text-sm text-gray-500">${item.desc}</p>
+                    </div>
+                    <div class="text-orange-500 font-bold whitespace-nowrap">${item.price}</div>
+                </div>
+            `).join('');
+        }
+
+        // Cargar categoría inicial
+        window.onload = () => {
+            filterMenu('saludable');
+        };
+    </script>
+</body>
+</html>
